@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap");
+
+:root {
+  --side-padding: 40px;
+  --side-padding: 80px;
+  --content-width: 1100px;
+  --navbar-height: 100px;
+  --dark-background: #2c4147;
+  --less-dark-background: #3d4a46;
+  --bright-green: #00c98e;
+  --pure-white: #fff;
+  --grey-bg: #f7f7f7;
+  --accent-gold: #ffab09;
+  --accent-aqua: #03c5d1;
+  --accent-blue: #4e81eb;
+  --bright-red: #fe3210;
+  --red-linear-gradient: linear-gradient(64.7deg, rgba(251, 112, 144, 0.25) 0%, #c90000 100%);
+  --red-linear-gradient: linear-gradient(64.7deg, rgba(251, 112, 144, 0.85) 0%, #c90000 100%);
+  --red-linear-gradient: linear-gradient(64.7deg, #c90000 0%, rgba(251, 112, 144, 0.85) 100%);
+  --blue-linear-gradient: linear-gradient(64.7deg, #4e81eb 0%, #4e81eb 100%);
+  --purple-linear-gradient: linear-gradient(64.7deg, #441dfc 0%, #4e81eb 100%);
+  --orange-linear-gradient: linear-gradient(64.7deg, #8e3232 0%, #c96d00 100%);
+  --teal-linear-gradient: linear-gradient(64.7deg, #1000c9 0%, #00c98e 100%);
+  --aqua-linear-gradient: linear-gradient(64.7deg, #03c5d1 0%, #03c5d1 100%);
+  --gold-linear-gradient: linear-gradient(64.7deg, #ffab09 0%, #ffab09 100%);
+  --muted: #969696;
+  --font-dark: #212121;
+  --font-light: #5b5b5b;
+  --border-color: #e4e4e4;
+  --color-secondary: var(--bright-green);
+}
+
+body {
+  margin: 0;
+  font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--grey-bg);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a,
+span,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  font-family: "Kanit", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: var(--font-dark);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-secondary);
+}
+
+button,
+.btn {
+  background: transparent;
+  border: solid 1px transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  padding: 12px 18px;
+  border-radius: 4px;
+  background: var(--color-secondary);
+  color: white;
+}
+button:active,
+.btn:active {
+  transform: translateY(1px);
+}
+button:disabled,
+.btn:disabled,
+.btn.disabled {
+  background: var(--muted);
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 1100px) {
+  :root {
+    --content-width: 900px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  :root {
+    --content-width: 800px;
+  }
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.empty {
+  margin: 0 auto;
+}
+.empty h2 {
+  font-size: 32px;
+  color: var(--pure-white);
+  padding: 10px 20px;
+  border: solid 1px var(--pure-white);
+  border-radius: 4px;
+}

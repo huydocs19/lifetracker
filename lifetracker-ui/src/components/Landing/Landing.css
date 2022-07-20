@@ -1,0 +1,54 @@
+.Landing {
+    width: 100%;
+    max-width: 100vw;
+    height: calc(100% - var(--navbar-height));
+    min-height: calc(100vh - var(--navbar-height));
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background: var(--dark-background);
+  }
+  .Landing .hero {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+  .Landing .hero img {
+    position: absolute;
+  }
+  .Landing .hero h1 {
+    font-size: 76px;
+    color: var(--pure-white);
+    font-weight: bold;
+    position: relative;
+    z-index: 10;
+  }
+  .Landing .hero p {
+    font-size: 24px;
+    color: var(--pure-white);
+    position: relative;
+    z-index: 10;
+  }
+  .Landing .tiles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 750px;
+    margin: 50px auto 0;
+  }
+  .Landing .tiles .tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .Landing .tiles .tile p {
+    color: var(--pure-white);
+    margin-top: 3px;
+  }
+  
