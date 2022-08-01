@@ -1,36 +1,35 @@
 const express = require("express")
 const morgan = require("morgan")
 const cors = require("cors")
+
+const security = require("./middleware/security")
+const authRoutes = require("./routes/auth")
 const {NotFoundError} = require("./utils/errors")
-const User = require("./models/user")
 
 const app = express()
 
-app.use(morgan("tiny"))
-app.use(express.json())
+// enable cross-origin resource sharing for all origins for all requests
+// NOTE: in production, we'll want to restrict this to only the origin
+// hosting our frontend.
 app.use(cors())
+// parse incoming requests with JSON payloads
+app.use(express.json())
+// log requests info
+app.use(morgan("tiny"))
+// extract user from jwt token sent in authorization header
+// attach credentials to res.locals.user
+app.use(security.extractUserFromJwt)
 
+// routes
+app.use("/auth", authRoutes)
 
-app.post("/login", async (req, res, next) => {
-    try {
-      // take the user's email and password and attempt to authenticate them
-      const user = await User.login(req.body)
-      res.status(200).json({user})
-    } catch (err) {
-      next(err)
-    }
+// health check
+app.get("/", function (req, res) {
+  return res.status(200).json({
+    ping: "pong",
+  })
 })
 
-app.post("/register", async (req, res, next) => {
-    try {
-      // take the user's info (e.g. name, email and password) and create a new
-      // user in our database 
-      const user = await User.register(req.body)
-      res.status(200).json({user})
-    } catch (err) {
-      next(err)
-    }
-})
 /* Handle all 404 errors that weren't matched by a route */
 app.use((req, res, next) => {
   return next(new NotFoundError())

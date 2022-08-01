@@ -1,8 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Navbar from "../Navbar/Navbar";
-import Landing from "../Landing/Landing";
-
+import {  
+  ActivityPage,
+  Landing,
+  Login,
+  Navbar,
+  NotFound,
+  Register, 
+  ProtectedRoute
+} from "components"
+import { AuthContextProvider } from "contexts/auth"
 import "./App.css"
+
+export default function AppContainer() {
+  return (
+    <AuthContextProvider>      
+      <App />           
+    </AuthContextProvider>
+  )
+}
 
 function App() {
   return (
@@ -11,18 +26,13 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Landing />} />
-          {/* <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/activity" element={<ProtectedRoute element={<ActivityPage />} />} />
-          <Route path="/exercise/*" element={<ProtectedRoute element={<ExercisePage />} />} />
-          <Route path="/nutrition/*" element={<ProtectedRoute element={<NutritionPage />} />} />
-          <Route path="/sleep/*" element={<ProtectedRoute element={<SleepPage />} />} />
-          <Route path="*" element={<NotFound />} /> */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />  
+          <Route path="/activity" element={<ProtectedRoute element={<ActivityPage />} />} /> 
+          <Route path="*" element={<NotFound />} />    
         </Routes>
       </BrowserRouter>
     </div>
   )
 }
-
-export default App;
 

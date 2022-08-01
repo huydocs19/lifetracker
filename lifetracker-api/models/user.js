@@ -4,7 +4,7 @@ const {BCRYPT_WORK_FACTOR} = require("../config")
 const bcrypt = require("bcrypt")
 
 class User {
-    static async makePublicUser(user) {
+    static makePublicUser(user) {
         return {
             id: user.id,
             email: user.email, 
@@ -25,10 +25,9 @@ class User {
                 throw new BadRequestError(`Missing ${field} in request body.`)
             }
         })
-        // take the user's email and lowercase it
-        const lowercaseEmail = credentials.email?.toLowerCase()
+       
         // lookup the user in the db by email
-        const user = await User.fetchUser("email", lowercaseEmail)        
+        const user = await User.fetchUserByEmail(credentials.email)        
         // if a user is found, compare the submitted password
         // with the password in the db
         // if there is a match, return the user
@@ -46,7 +45,7 @@ class User {
         // user should submit their info (e.g. email, username, and password) 
         // if any of these fields are missing, throw an error        
         const requiredFields = ["email", "username", "firstName", "lastName",
-            "password"]
+            "password", "isAdmin"]
         requiredFields.forEach((field) => {
             if (!credentials.hasOwnProperty(field)) {
                 throw new BadRequestError(`Missing ${field} in request body.`)
@@ -58,12 +57,12 @@ class User {
         
         // make sure no user already exists in the system with that email
         // if one does, throw an error
-        const existingEmail = await User.fetchUserByEmail(credentials.email)        
-        if(existingEmail) {
+        const existingUser = await User.fetchUserByEmail(credentials.email)        
+        if(existingUser) {
             throw new BadRequestError(`A user already exists with email: ${credentials.email}`)
         }
-        const existingUsername = await User.fetchUserByUsername(credentials.username)
-        if(existingUsername) {
+        const existingUserWithUsername = await User.fetchUserByUsername(credentials.username)
+        if(existingUserWithUsername) {
             throw new BadRequestError(`A user already exists with username: ${credentials.username}`)
         }
         // take the user's email and lowercase it
@@ -80,12 +79,13 @@ class User {
                 username,                                
                 first_name,
                 last_name,
-                password
+                password,
+                is_admin
             )
-            VALUES ($1, $2, $3, $4, $5)
-            RETURNING id, email, username, first_name, last_name, created_at, updated_at, is_admin
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING id, email, username, first_name, last_name, is_admin, created_at, updated_at;
             `,
-            [lowercaseEmail, lowercaseUsername, credentials.firstName, credentials.lastName, hashedPassword]
+            [lowercaseEmail, lowercaseUsername, credentials.firstName, credentials.lastName, hashedPassword, credentials.isAdmin]
         )                
         // return the user 
         const user = result.rows[0]
