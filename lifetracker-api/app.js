@@ -4,6 +4,9 @@ const cors = require("cors")
 
 const security = require("./middleware/security")
 const authRoutes = require("./routes/auth")
+const exerciseRoutes = require("./routes/exercise")
+const nutritionRoutes = require("./routes/nutrition")
+const sleepRoutes = require("./routes/sleep")
 const {NotFoundError} = require("./utils/errors")
 
 const app = express()
@@ -22,6 +25,9 @@ app.use(security.extractUserFromJwt)
 
 // routes
 app.use("/auth", authRoutes)
+app.use("/exercise", exerciseRoutes)
+app.use("/nutrition", nutritionRoutes)
+app.use("/sleep", sleepRoutes)
 
 // health check
 app.get("/", function (req, res) {
