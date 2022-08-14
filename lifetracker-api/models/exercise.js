@@ -3,7 +3,7 @@ const { BadRequestError, NotFoundError } = require("../utils/errors")
 
 class Exercise {
     static async createExercise({ newExercise, user }) {
-        const requiredFields = ["name", "category"]
+        const requiredFields = ["name", "category"]        
         requiredFields.forEach((field) => {
           if (!newExercise?.hasOwnProperty(field)) {
             throw new BadRequestError(`Missing required field - ${field} - in request body.`)
@@ -19,7 +19,7 @@ class Exercise {
                         name,
                         duration,
                         intensity,
-                        category                     
+                        category,                     
                         created_at AS "createdAt";                       
             `,
             [
@@ -29,7 +29,7 @@ class Exercise {
               newExercise.intensity || 1,
               newExercise.category
             ]
-          )
+          )          
           return results.rows[0]
       }
 
@@ -41,7 +41,7 @@ class Exercise {
                 name,
                 duration,
                 intensity,
-                category                     
+                category,                     
                 created_at AS "createdAt"
           FROM exercises
           WHERE id = $1;
@@ -63,7 +63,7 @@ class Exercise {
                 exercises.name,
                 exercises.duration,
                 exercises.intensity,
-                exercises.category                     
+                exercises.category,                     
                 exercises.created_at AS "createdAt"            
           FROM exercises
           JOIN users ON users.id = exercises.user_id;      

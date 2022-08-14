@@ -5,8 +5,8 @@ const router = express.Router()
 
 router.post("/", security.requireAuthenticatedUser, async function (req, res, next) {
   try {
-    const user = res.locals.user
-    const exercise = await Exercise.createExercise({ newExercise: req.body.exercise, user })
+    const user = res.locals.user    
+    const exercise = await Exercise.createExercise({ newExercise: req.body.exercise, user })    
     return res.status(201).json({ exercise })
   } catch (err) {
     next(err)
