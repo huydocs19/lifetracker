@@ -1,0 +1,13 @@
+.Banner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--less-dark-background);
+    height: 120px;
+  }
+  .Banner h1 {
+    font-size: 42px;
+    color: var(--pure-white);
+  }
+  

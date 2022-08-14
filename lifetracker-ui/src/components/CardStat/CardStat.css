@@ -1,0 +1,16 @@
+.CardStat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .CardStat p {
+    color: var(--pure-white);
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .CardStat span {
+    color: var(--pure-white);
+    font-size: 40px;
+    font-weight: 400;
+  }
+  
