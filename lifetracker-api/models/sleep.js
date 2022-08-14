@@ -9,6 +9,17 @@ class Sleep {
             throw new BadRequestError(`Missing required field - ${field} - in request body.`)
           }
         })
+
+        const startTime = new Date(newSleep.startTime)
+        const endTime = new Date(newSleep.endTime)
+        if (startTime.getTime() >= endTime.getTime()) {
+          throw new BadRequestError(`End time must be after start time.`)
+        }
+        const existingSleepTime = await this.getOverlapSleepTime(startTime, endTime, user)
+        if (existingSleepTime) {
+          throw new BadRequestError(`Overlapping sleep time.`)
+        }
+
     
         const results = await db.query(
             `
@@ -22,8 +33,8 @@ class Sleep {
             `,
             [
               user.username,
-              newSleep.startTime,
-              newSleep.endTime 
+              startTime,
+              endTime 
             ]
           )
           return results.rows[0]
@@ -49,7 +60,7 @@ class Sleep {
     
         throw new NotFoundError("No nutrition found with that id.")
       }
-      static async fetchAll() {
+      static async listSleepFromUser(user) {
         const results = await db.query(
           `
           SELECT sleep.id,
@@ -58,11 +69,26 @@ class Sleep {
                 sleep.end_time AS "endTime",     
                 sleep.created_at AS "createdAt"           
           FROM sleep
-          JOIN users ON users.id = sleep.user_id;      
-          `
+          JOIN users ON users.id = sleep.user_id
+          WHERE user_id = (SELECT id FROM users WHERE username = $1);      
+          `,
+          [user.username]
         )
     
         return results.rows
+      }
+      static async getOverlapSleepTime(startTime, endTime, user) {
+        const results = await db.query(
+          `
+          SELECT *          
+          FROM sleep
+          JOIN users ON users.id = sleep.user_id
+          WHERE sleep.user_id = (SELECT id FROM users WHERE username = $1) AND sleep.end_time >= $2 AND sleep.start_time <= $3;      
+          `,
+          [user.username, startTime, endTime]
+        )
+    
+        return results.rows[0]
       }
 }
 

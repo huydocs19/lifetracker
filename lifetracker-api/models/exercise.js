@@ -55,7 +55,7 @@ class Exercise {
     
         throw new NotFoundError("No exercise found with that id.")
       }
-      static async fetchAll() {
+      static async listExercisesFromUser(user) {
         const results = await db.query(
           `
           SELECT exercises.id,
@@ -66,8 +66,10 @@ class Exercise {
                 exercises.category,                     
                 exercises.created_at AS "createdAt"            
           FROM exercises
-          JOIN users ON users.id = exercises.user_id;      
-          `
+          JOIN users ON users.id = exercises.user_id
+          WHERE exercises.user_id = (SELECT id FROM users WHERE username = $1);      
+          `,
+          [user.username]
         )
     
         return results.rows

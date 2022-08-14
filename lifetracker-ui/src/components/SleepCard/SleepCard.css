@@ -1,0 +1,32 @@
+.SleepCard {
+    width: 380px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding: 16px 32px;
+    background: var(--teal-linear-gradient);
+  }
+  
+  .SleepCard .card-header,
+  .SleepCard .card-stats,
+  .SleepCard .card-meta {    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .SleepCard .card-header .title {
+    color: var(--pure-white);
+  }
+  .SleepCard .card-meta small {
+    color: var(--pure-white);
+  }
+  
+  .SleepCard .card-meta small.category {
+    color: var(--pure-white);
+    border: solid 1px var(--pure-white);
+    border-radius: 8px;
+    padding: 8px 12px;
+  }

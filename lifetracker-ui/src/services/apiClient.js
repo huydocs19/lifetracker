@@ -38,12 +38,20 @@ class ApiClient {
     return await this.request({ endpoint: `exercise`, method: `POST`, data: { exercise } })
   }
 
+  async createSleep(sleep) {
+    return await this.request({ endpoint: `sleep`, method: `POST`, data: { sleep } })
+  }
+
   async fetchUserExercise() {
     return await this.request({ endpoint: `exercise`, method: `GET` })
   }
 
   async fetchUserNutrition() {
     return await this.request({ endpoint: `nutrition`, method: `GET` })
+  }
+
+  async fetchUserSleep() {
+    return await this.request({ endpoint: `sleep`, method: `GET` })
   }
 
   async fetchUserFromToken() {

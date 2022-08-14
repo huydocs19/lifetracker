@@ -13,9 +13,10 @@ router.post("/", security.requireAuthenticatedUser, async function (req, res, ne
   }
 })
 
-router.get("/", async function (req, res, next) {
+router.get("/", security.requireAuthenticatedUser, async function (req, res, next) {
   try {
-    const nutritions = await Nutrition.fetchAll()
+    const user = res.locals.user
+    const nutritions = await Nutrition.listNutritionsFromUser(user)
     return res.status(200).json({ nutritions })
   } catch (err) {
     return next(err)

@@ -1,0 +1,23 @@
+.SleepOverview {
+    display: flex;
+    flex-direction: column;
+  }
+  .SleepOverview .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .SleepOverview .header h3 {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--pure-white);
+  }
+  .SleepOverview .feed {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 50px;
+    padding-bottom: 50px;
+  }

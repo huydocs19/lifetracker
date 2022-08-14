@@ -13,9 +13,10 @@ router.post("/", security.requireAuthenticatedUser, async function (req, res, ne
   }
 })
 
-router.get("/", async function (req, res, next) {
+router.get("/", security.requireAuthenticatedUser, async function (req, res, next) {
   try {
-    const sleep = await Sleep.fetchAll()
+    const user = res.locals.user
+    const sleep = await Sleep.listSleepFromUser(user)
     return res.status(200).json({ sleep })
   } catch (err) {
     return next(err)

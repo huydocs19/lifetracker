@@ -13,9 +13,10 @@ router.post("/", security.requireAuthenticatedUser, async function (req, res, ne
   }
 })
 
-router.get("/", async function (req, res, next) {
+router.get("/", security.requireAuthenticatedUser, async function (req, res, next) {
   try {
-    const exercises = await Exercise.fetchAll()
+    const user = res.locals.user
+    const exercises = await Exercise.listExercisesFromUser(user)
     return res.status(200).json({ exercises })
   } catch (err) {
     return next(err)

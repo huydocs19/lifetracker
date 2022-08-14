@@ -18,3 +18,7 @@ export { default as NutritionOverview} from "./NutritionOverview/NutritionOvervi
 export { default as NutritionPage} from "./NutritionPage/NutritionPage"
 export { default as ProtectedRoute } from "./ProtectedRoute/ProtectedRoute"
 export { default as Register } from "./Register/Register"
+export { default as SleepCard } from "./SleepCard/SleepCard"
+export { default as SleepNew } from "./SleepNew/SleepNew"
+export { default as SleepOverview } from "./SleepOverview/SleepOverview"
+export { default as SleepPage } from "./SleepPage/SleepPage"

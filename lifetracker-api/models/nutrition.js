@@ -58,7 +58,7 @@ class Nutrition {
     
         throw new NotFoundError("No nutrition found with that id.")
       }
-      static async fetchAll() {
+      static async listNutritionsFromUser(user) {
         const results = await db.query(
           `
           SELECT nutritions.id,
@@ -70,8 +70,10 @@ class Nutrition {
                 nutritions.image_url AS "imageUrl",       
                 nutritions.created_at AS "createdAt"            
           FROM nutritions
-          JOIN users ON users.id = nutritions.user_id;      
-          `
+          JOIN users ON users.id = nutritions.user_id
+          WHERE nutritions.user_id = (SELECT id FROM users WHERE username = $1);      
+          `,
+          [user.username]
         )
     
         return results.rows
