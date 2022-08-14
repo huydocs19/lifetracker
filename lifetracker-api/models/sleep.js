@@ -63,13 +63,12 @@ class Sleep {
       static async listSleepFromUser(user) {
         const results = await db.query(
           `
-          SELECT sleep.id,
-                sleep.user_id AS "userId",
-                sleep.start_time AS "startTime",
-                sleep.end_time AS "endTime",     
-                sleep.created_at AS "createdAt"           
-          FROM sleep
-          JOIN users ON users.id = sleep.user_id
+          SELECT id,
+                user_id AS "userId",
+                start_time AS "startTime",
+                end_time AS "endTime",     
+                created_at AS "createdAt"           
+          FROM sleep          
           WHERE user_id = (SELECT id FROM users WHERE username = $1);      
           `,
           [user.username]

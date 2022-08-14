@@ -42,6 +42,10 @@ class ApiClient {
     return await this.request({ endpoint: `sleep`, method: `POST`, data: { sleep } })
   }
 
+  async fetchUserActivity() {
+    return await this.request({ endpoint: `activity`, method: `GET` })
+  }
+
   async fetchUserExercise() {
     return await this.request({ endpoint: `exercise`, method: `GET` })
   }

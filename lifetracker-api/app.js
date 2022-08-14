@@ -7,6 +7,7 @@ const authRoutes = require("./routes/auth")
 const exerciseRoutes = require("./routes/exercise")
 const nutritionRoutes = require("./routes/nutrition")
 const sleepRoutes = require("./routes/sleep")
+const activityRoutes = require("./routes/activity")
 const {NotFoundError} = require("./utils/errors")
 
 const app = express()
@@ -28,6 +29,7 @@ app.use("/auth", authRoutes)
 app.use("/exercise", exerciseRoutes)
 app.use("/nutrition", nutritionRoutes)
 app.use("/sleep", sleepRoutes)
+app.use("/activity", activityRoutes)
 
 // health check
 app.get("/", function (req, res) {

@@ -1,0 +1,62 @@
+.SummaryStat {
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: white;
+  }
+  .SummaryStat .background {
+    mix-blend-mode: normal;
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 16px 32px;
+  }
+  
+  .SummaryStat.gold .background {
+    background: var(--gold-linear-gradient);
+  }
+  .SummaryStat.gold {
+    background: var(--gold-linear-gradient);
+  }
+  .SummaryStat.aqua .background {
+    background: var(--aqua-linear-gradient);
+  }
+  .SummaryStat.teal .background {
+    background: var(--teal-linear-gradient);
+  }
+  .SummaryStat.orange .background {
+    background: var(--orange-linear-gradient);
+  }
+  .SummaryStat.purple .background {
+    background: var(--purple-linear-gradient);
+  }
+  .SummaryStat.red .background {
+    background: var(--red-linear-gradient);
+  }
+  .SummaryStat h1 {
+    color: var(--pure-white);
+    font-size: 60px;
+    font-weight: 700;
+  }
+  .SummaryStat p {
+    color: var(--pure-white);
+    font-size: 20px;
+  }
+  .SummaryStat.small {
+    height: 110px;
+  }
+  .SummaryStat.small .background {
+    height: 110px;
+  }
+  .SummaryStat.small h1 {
+    font-size: 24px;
+  }
+  .SummaryStat.small p {
+    font-size: 20px;
+  }

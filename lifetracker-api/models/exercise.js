@@ -58,16 +58,15 @@ class Exercise {
       static async listExercisesFromUser(user) {
         const results = await db.query(
           `
-          SELECT exercises.id,
-                exercises.user_id AS "userId",
-                exercises.name,
-                exercises.duration,
-                exercises.intensity,
-                exercises.category,                     
-                exercises.created_at AS "createdAt"            
-          FROM exercises
-          JOIN users ON users.id = exercises.user_id
-          WHERE exercises.user_id = (SELECT id FROM users WHERE username = $1);      
+          SELECT id,
+                user_id AS "userId",
+                name,
+                duration,
+                intensity,
+                category,                     
+                created_at AS "createdAt"            
+          FROM exercises          
+          WHERE user_id = (SELECT id FROM users WHERE username = $1);      
           `,
           [user.username]
         )

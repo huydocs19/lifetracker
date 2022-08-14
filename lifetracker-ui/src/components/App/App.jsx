@@ -12,6 +12,7 @@ import {
   SleepPage,
 } from "components"
 import { AuthContextProvider } from "contexts/auth"
+import { ActivityContextProvider } from "contexts/activity"
 import { ExerciseContextProvider } from "contexts/exercise"
 import { NutritionContextProvider } from "contexts/nutrition"
 import { SleepContextProvider } from "contexts/sleep"
@@ -23,7 +24,9 @@ export default function AppContainer() {
       <ExerciseContextProvider>
         <NutritionContextProvider> 
           <SleepContextProvider>
-            <App /> 
+            <ActivityContextProvider>
+              <App /> 
+            </ActivityContextProvider>            
           </SleepContextProvider>          
         </NutritionContextProvider>        
       </ExerciseContextProvider>

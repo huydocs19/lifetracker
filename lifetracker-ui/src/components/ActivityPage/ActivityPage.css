@@ -1,0 +1,53 @@
+.ActivityPage {
+    width: 100%;
+    max-width: 100vw;
+    height: calc(100% - var(--navbar-height));
+    min-height: calc(100vh - var(--navbar-height));
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background: var(--dark-background);
+  }
+  .ActivityPage .content {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    max-width: var(--content-width);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+  }
+  .ActivityPage .actions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 50px;
+  }
+  .ActivityPage .actions h2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    font-size: 42px;
+    color: var(--pure-white);
+  }
+  .ActivityPage .actions .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  .ActivityPage .main,
+  .ActivityPage .more {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 35px;
+    gap: 15px;
+  }
+  .ActivityPage h4 {
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--pure-white);
+    margin-top: 35px;
+  }
