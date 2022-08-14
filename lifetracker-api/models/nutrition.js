@@ -5,14 +5,14 @@ class Nutrition {
     static async createNutrition({ newNutrition, user }) {
         const requiredFields = ["name", "category", "imageUrl"]
         requiredFields.forEach((field) => {
-          if (!newNutrition?.hasOwnProperty(field)) {
+          if (!newNutrition?.hasOwnProperty(field) || !newNutrition[field]) {
             throw new BadRequestError(`Missing required field - ${field} - in request body.`)
           }
         })
     
         const results = await db.query(
             `
-              INSERT INTO exercises (user_id, name, category, quantity, calories, image_url)
+              INSERT INTO nutritions (user_id, name, category, quantity, calories, image_url)
               VALUES ((SELECT id FROM users WHERE username = $1), $2, $3, $4, $5, $6)
               RETURNING id,
                         user_id AS "userId",
@@ -46,7 +46,7 @@ class Nutrition {
                 calories, 
                 image_url AS "imageUrl",       
                 created_at AS "createdAt"
-          FROM nutrition
+          FROM nutritions
           WHERE id = $1;
           `,
           [nutritionId]
@@ -61,16 +61,16 @@ class Nutrition {
       static async fetchAll() {
         const results = await db.query(
           `
-          SELECT nutrition.id,
-                nutrition.user_id AS "userId",
-                nutrition.name,
-                nutrition.category, 
-                nutrition.quantity, 
-                nutrition.calories, 
-                nutrition.image_url AS "imageUrl",       
-                nutrition.created_at AS "createdAt"            
-          FROM nutrition
-          JOIN users ON users.id = nutrition.user_id;      
+          SELECT nutritions.id,
+                nutritions.user_id AS "userId",
+                nutritions.name,
+                nutritions.category, 
+                nutritions.quantity, 
+                nutritions.calories, 
+                nutritions.image_url AS "imageUrl",       
+                nutritions.created_at AS "createdAt"            
+          FROM nutritions
+          JOIN users ON users.id = nutritions.user_id;      
           `
         )
     

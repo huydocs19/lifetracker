@@ -5,7 +5,7 @@ class Exercise {
     static async createExercise({ newExercise, user }) {
         const requiredFields = ["name", "category"]        
         requiredFields.forEach((field) => {
-          if (!newExercise?.hasOwnProperty(field)) {
+          if (!newExercise?.hasOwnProperty(field) || !newExercise[field]) {
             throw new BadRequestError(`Missing required field - ${field} - in request body.`)
           }
         })

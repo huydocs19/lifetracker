@@ -1,0 +1,42 @@
+.NutritionCard {
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding: 16px 32px;
+    background: var(--aqua-linear-gradient);
+  }
+  
+  .NutritionCard .card-header,
+  .NutritionCard .card-stats,
+  .NutritionCard .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .NutritionCard .card-header {
+    justify-content: flex-start;
+  }
+  .NutritionCard .card-header img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+  }
+  .NutritionCard .card-header .title {
+    color: var(--pure-white);
+  }
+  .NutritionCard .card-meta small {
+    color: var(--pure-white);
+  }
+  
+  .NutritionCard .card-meta small.category {
+    color: var(--pure-white);
+    border: solid 1px var(--pure-white);
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+  

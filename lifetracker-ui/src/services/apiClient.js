@@ -30,16 +30,26 @@ class ApiClient {
     }
   }  
 
+  async createNutrition(nutrition) {
+    return await this.request({ endpoint: `nutrition`, method: `POST`, data: { nutrition } })
+  }
+
   async createExercise(exercise) {
     return await this.request({ endpoint: `exercise`, method: `POST`, data: { exercise } })
   }
-  
-  async fetchUserFromToken() {
-    return await this.request({ endpoint: `auth/me`, method: `GET` })
-  }
+
   async fetchUserExercise() {
     return await this.request({ endpoint: `exercise`, method: `GET` })
   }
+
+  async fetchUserNutrition() {
+    return await this.request({ endpoint: `nutrition`, method: `GET` })
+  }
+
+  async fetchUserFromToken() {
+    return await this.request({ endpoint: `auth/me`, method: `GET` })
+  }
+  
 
   async signupUser(credentials) {
     return await this.request({ endpoint: `auth/register`, method: `POST`, data: credentials })

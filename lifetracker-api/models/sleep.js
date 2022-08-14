@@ -5,14 +5,14 @@ class Sleep {
     static async createSleep({ newSleep, user }) {
         const requiredFields = ["startTime", "endTime"]
         requiredFields.forEach((field) => {
-          if (!newSleep?.hasOwnProperty(field)) {
+          if (!newSleep?.hasOwnProperty(field) || !newSleep[field]) {
             throw new BadRequestError(`Missing required field - ${field} - in request body.`)
           }
         })
     
         const results = await db.query(
             `
-              INSERT INTO exercises (user_id, start_time, end_time)
+              INSERT INTO sleep (user_id, start_time, end_time)
               VALUES ((SELECT id FROM users WHERE username = $1), $2, $3)
               RETURNING id,
                         user_id AS "userId",

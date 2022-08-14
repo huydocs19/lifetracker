@@ -1,0 +1,31 @@
+.NutritionNew h2 {
+    text-align: center;
+    font-size: 31px;
+    color: var(--pure-white);
+  }
+  .NutritionNew .error {
+    margin: 10px 0;
+    color: var(--bright-red);
+  }
+  .NutritionNew .form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 700px;
+    padding-bottom: 10px;
+    color: var(--pure-white);
+    margin: 0 auto;
+  }
+  .NutritionNew .form .split-input-field {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+  }
+  .NutritionNew .form button {
+    flex: 1;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
