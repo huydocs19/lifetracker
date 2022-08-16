@@ -38,6 +38,10 @@
     color: var(--pure-white);
     background: var(--accent-blue);
   }
+  .Button.primary.red{
+    color: var(--pure-white);
+    background: var(--bright-red);
+  }
   .Button.secondary {
     color: var(--pure-white);
     background: var(--color-secondary);
@@ -66,6 +70,11 @@
     background: transparent;
     color: var(--accent-aqua);
     border: solid 1px var(--accent-aqua);
+  }
+  .Button.outline.red {
+    background: transparent;
+    color: var(--bright-red);
+    border: solid 1px var(--bright-red);
   }
   .Button.ghost {
     font-weight: normal;

@@ -1,15 +1,16 @@
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useParams } from "react-router-dom"
 import { Button, InputField } from "components"
-import { useNutritionNewForm } from "hooks/useNutritionNewForm"
-import "./NutritionNew.css"
+import { useExerciseEditForm } from "hooks/useExerciseEditForm"
+import "./ExerciseEdit.css"
 
-export default function NutritionNew() {
-  const navigate = useNavigate()
-  const { form, errors, isLoading, handleOnSubmit, handleOnChange } = useNutritionNewForm()
-
+export default function ExerciseEdit() {
+  const navigate = useNavigate() 
+  const {exerciseId} = useParams()
+  const { form, errors, isLoading, handleOnSubmit, handleOnChange } = useExerciseEditForm(exerciseId)
+  
   return (
-    <div className="NutritionNew">
-      <h2>Record Nutrition</h2>
+    <div className="ExerciseEdit">
+      <h2>Edit Exercise</h2>
 
       <div className="form">
         {errors.form && <span className="error">{errors.form}</span>}
@@ -19,8 +20,7 @@ export default function NutritionNew() {
           type="text"
           label="Name"
           value={form.name}
-          error={errors.name}
-          placeholder="Nutrition name"
+          error={errors.name}          
           handleOnChange={handleOnChange}
         />
 
@@ -29,52 +29,40 @@ export default function NutritionNew() {
           type="text"
           label="Category"
           value={form.category}
-          error={errors.category}
-          placeholder="Nutrition category"
+          error={errors.category}          
           handleOnChange={handleOnChange}
         />
 
         <div className="split-input-field">
           <InputField
-            name="quantity"
+            name="duration"
             type="number"
-            value={form.quantity}
-            error={errors.quantity}
-            label="Quantity"
+            value={form.duration}
+            error={errors.duration}
+            label="Duration (min)"
             min={1}
             max={100000000}
             handleOnChange={handleOnChange}
           />
           <InputField
-            name="calories"
+            name="intensity"
             type="number"
-            label="Calories"
-            value={form.calories}
-            error={errors.calories}
+            label="Intensity (1-10)"
+            value={form.intensity}
+            error={errors.intensity}
             handleOnChange={handleOnChange}
             min={0}
-            max={10000000000}
-            step={10}
+            max={10}
           />
         </div>
-
-        <InputField
-          name="imageUrl"
-          type="text"
-          label="Image URL"
-          value={form.imageUrl}
-          error={errors.imageUrl}
-          placeholder="http://www.food-image.com/1"
-          handleOnChange={handleOnChange}
-        />
         <div className="buttons">
           <Button
             buttonType="primary"
             color="gold"
             isLoading={isLoading}
             isDisabled={isLoading}
-            onClick={() => handleOnSubmit()}
-            size="small"
+            onClick={() => handleOnSubmit()} 
+            size = "small"         
           >
             Save
           </Button>
@@ -83,7 +71,7 @@ export default function NutritionNew() {
             color="blue"
             isLoading={isLoading}
             isDisabled={isLoading}
-            onClick={() => navigate(`/nutrition`)}
+            onClick={() => navigate(`/exercise/${exerciseId}`)}
             size = "small"         
           >
             Cancel

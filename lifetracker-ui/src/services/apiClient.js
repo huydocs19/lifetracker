@@ -34,16 +34,47 @@ class ApiClient {
     return await this.request({ endpoint: `nutrition`, method: `POST`, data: { nutrition } })
   }
 
+  async updateNutrition(nutritionId, nutrition) {
+    return await this.request({ endpoint: `nutrition/${nutritionId}/update`, method: `PUT`, data: { nutrition } })
+  }
+  async deleteNutrition(nutritionId) {
+    return await this.request({ endpoint: `nutrition/${nutritionId}/delete`, method: `DELETE`})
+  }
+
   async createExercise(exercise) {
     return await this.request({ endpoint: `exercise`, method: `POST`, data: { exercise } })
+  }
+  async updateExercise(exerciseId, exercise) {
+    return await this.request({ endpoint: `exercise/${exerciseId}/update`, method: `PUT`, data: { exercise } })
+  }
+  async deleteExercise(exerciseId) {
+    return await this.request({ endpoint: `exercise/${exerciseId}/delete`, method: `DELETE`})
   }
 
   async createSleep(sleep) {
     return await this.request({ endpoint: `sleep`, method: `POST`, data: { sleep } })
   }
 
+  async updateSleep(sleepId, sleep) {
+    return await this.request({ endpoint: `sleep/${sleepId}/update`, method: `PUT`, data: { sleep } })
+  }
+  async deleteSleep(sleepId) {
+    return await this.request({ endpoint: `sleep/${sleepId}/delete`, method: `DELETE`})
+  }
+
   async fetchUserActivity() {
     return await this.request({ endpoint: `activity`, method: `GET` })
+  }
+
+  async fetchExerciseById(exerciseId) {
+    return await this.request({ endpoint: `exercise/${exerciseId}`, method: `GET` })
+  }
+
+  async fetchNutritionById(nutritionId) {
+    return await this.request({ endpoint: `nutrition/${nutritionId}`, method: `GET` })
+  }
+  async fetchSleepById(sleepId) {
+    return await this.request({ endpoint: `sleep/${sleepId}`, method: `GET` })
   }
 
   async fetchUserExercise() {

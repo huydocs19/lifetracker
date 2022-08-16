@@ -1,13 +1,13 @@
-.SleepNew h2 {
+.SleepEdit h2 {
     text-align: center;
     font-size: 31px;
     color: var(--pure-white);
   }
-  .SleepNew .error {
+  .SleepEdit .error {
     margin: 10px 0;
     color: var(--bright-red);
   }
-  .SleepNew .form {
+  .SleepEdit .form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -17,13 +17,13 @@
     color: var(--pure-white);
     margin: 0 auto;
   }
-  .SleepNew .form .split-input-field {
+  .SleepEdit .form .split-input-field {
     display: flex;
     flex-direction: row;
     gap: 20px;
     width: 100%;
-  }
-  .SleepNew .form .buttons {
+  }  
+  .SleepEdit .form .buttons {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;

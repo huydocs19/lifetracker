@@ -1,15 +1,16 @@
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useParams } from "react-router-dom"
 import { Button, InputField } from "components"
-import { useNutritionNewForm } from "hooks/useNutritionNewForm"
-import "./NutritionNew.css"
+import { useNutritionEditForm } from "hooks/useNutritionEditForm"
+import "./NutritionEdit.css"
 
-export default function NutritionNew() {
+export default function NutritionEdit() {
   const navigate = useNavigate()
-  const { form, errors, isLoading, handleOnSubmit, handleOnChange } = useNutritionNewForm()
+  const {nutritionId} = useParams()
+  const { form, errors, isLoading, handleOnSubmit, handleOnChange } = useNutritionEditForm(nutritionId)
 
   return (
-    <div className="NutritionNew">
-      <h2>Record Nutrition</h2>
+    <div className="NutritionEdit">
+      <h2>Edit Nutrition</h2>
 
       <div className="form">
         {errors.form && <span className="error">{errors.form}</span>}
@@ -67,14 +68,15 @@ export default function NutritionNew() {
           placeholder="http://www.food-image.com/1"
           handleOnChange={handleOnChange}
         />
+
         <div className="buttons">
           <Button
             buttonType="primary"
             color="gold"
             isLoading={isLoading}
             isDisabled={isLoading}
-            onClick={() => handleOnSubmit()}
-            size="small"
+            onClick={() => handleOnSubmit()} 
+            size = "small"         
           >
             Save
           </Button>
@@ -83,7 +85,7 @@ export default function NutritionNew() {
             color="blue"
             isLoading={isLoading}
             isDisabled={isLoading}
-            onClick={() => navigate(`/nutrition`)}
+            onClick={() => navigate(`/nutrition/${nutritionId}`)}
             size = "small"         
           >
             Cancel

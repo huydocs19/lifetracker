@@ -23,9 +23,12 @@
     gap: 20px;
     width: 100%;
   }
-  .ExerciseNew .form button {
-    flex: 1;
+  .ExerciseNew .form .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     width: 100%;
+    gap: 20px;
     margin-top: 20px;
   }
   

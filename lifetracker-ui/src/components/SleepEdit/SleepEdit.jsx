@@ -1,15 +1,16 @@
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useParams } from "react-router-dom"
 import { Button, InputField } from "components"
-import { useSleepNewForm } from "hooks/useSleepNewForm"
-import "./SleepNew.css"
+import { useSleepEditForm } from "hooks/useSleepEditForm"
+import "./SleepEdit.css"
 
-export default function SleepNew() {
+export default function SleepEdit() {
   const navigate = useNavigate()
-  const { form, errors, isLoading, handleOnSubmit, handleOnChange } = useSleepNewForm()
-
+  const {sleepId} = useParams()
+  const { form, errors, isLoading, handleOnSubmit, handleOnChange } = useSleepEditForm(sleepId)
+  console.log("form", form)
   return (
-    <div className="SleepNew">
-      <h2>Add Sleep</h2>
+    <div className="SleepEdit">
+      <h2>Edit Sleep</h2>
 
       <div className="form">
         {errors.form && <span className="error">{errors.form}</span>}
@@ -31,6 +32,7 @@ export default function SleepNew() {
           error={errors.endTime}
           handleOnChange={handleOnChange}
         />
+
         <div className="buttons">
           <Button
             buttonType="primary"
@@ -47,13 +49,12 @@ export default function SleepNew() {
             color="blue"
             isLoading={isLoading}
             isDisabled={isLoading}
-            onClick={() => navigate(`/sleep`)}
+            onClick={() => navigate(`/sleep/${sleepId}`)}
             size = "small"         
           >
             Cancel
           </Button>
         </div>
-        
       </div>
     </div>
   )

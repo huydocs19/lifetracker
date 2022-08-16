@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom"
-import { Banner, ExerciseNew, ExerciseOverview, NotFound } from "components"
+import { Banner, ExerciseDetail, ExerciseEdit, ExerciseNew, ExerciseOverview, NotFound } from "components"
 import "./ExercisePage.css"
 
 export default function ExercisePage() {
@@ -11,6 +11,8 @@ export default function ExercisePage() {
         <Routes>
           <Route path="/" element={<ExerciseOverview />} />
           <Route path="/create" element={<ExerciseNew />} />
+          <Route path="/:exerciseId" element={<ExerciseDetail />} />  
+          <Route path="/:exerciseId/edit" element={<ExerciseEdit />} />        
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

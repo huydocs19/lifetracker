@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button, NutritionCard } from "components"
 import { useNutritionContext } from "contexts/nutrition"
 
@@ -18,7 +18,7 @@ export default function NutritionOverview() {
       </div>
       <div className="feed">
         {nutritions?.length ? (
-          nutritions.map((nutrition) => <NutritionCard nutrition={nutrition} key={nutrition.id} />)
+          nutritions.map((nutrition) => <Link to={`/nutrition/${nutrition.id}`} key={nutrition.id} ><NutritionCard nutrition={nutrition} /></Link>)
         ) : (
           <div className="empty">
             <h2>Nothing here yet.</h2>

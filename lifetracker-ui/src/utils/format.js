@@ -10,6 +10,16 @@ export const formatCalendar = (date) => {
   return moment(d).calendar()
 }
 
+export const formatDateAndTime = (date) => {
+  const d = new Date(date)
+  return moment(d).format("MMM Do, YYYY [at] hh:mm A")
+}
+
+export const formatSleepTime = (date) => {
+  const d = new Date(date)
+  return moment(d).format("yyyy-MM-DDTHH:mm")
+}
+
 export const formatTimeStat = (date) => {
   const d = new Date(date)
   return moment(d).format("h:mm A")

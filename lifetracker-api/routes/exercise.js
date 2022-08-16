@@ -1,6 +1,7 @@
 const express = require("express")
 const Exercise = require("../models/exercise")
 const security = require("../middleware/security")
+const permissions = require("../middleware/permissions")
 const router = express.Router()
 
 router.post("/", security.requireAuthenticatedUser, async function (req, res, next) {
@@ -25,10 +26,28 @@ router.get("/", security.requireAuthenticatedUser, async function (req, res, nex
 
 router.get("/:exerciseId", security.requireAuthenticatedUser, async function (req, res, next) {
   try {
-    const exercise = await Exercise.fetchExerciseById(req.params.exerciseId)
+    const exercise = await Exercise.fetchExerciseById(req.params.exerciseId)    
     return res.status(200).json({ exercise })
   } catch (err) {
     return next(err)
+  }
+})
+router.put("/:exerciseId/update", security.requireAuthenticatedUser, 
+permissions.authedUserIsExerciseOwner, async function (req, res, next) {
+  try {        
+    const exercise = await Exercise.updateExercise({exerciseId: req.params.exerciseId, updatedExercise: req.body.exercise})    
+    return res.status(200).json({ exercise })
+  } catch (err) {
+    next(err)
+  }
+})
+router.delete("/:exerciseId/delete", security.requireAuthenticatedUser, 
+permissions.authedUserIsExerciseOwner, async function (req, res, next) {
+  try {
+    const exercise = await Exercise.deleteExercise(req.params.exerciseId)    
+    return res.status(200).json({ exercise })
+  } catch (err) {
+    next(err)
   }
 })
 

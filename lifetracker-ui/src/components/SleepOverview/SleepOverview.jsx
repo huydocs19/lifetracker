@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button, SleepCard } from "components"
 import { useSleepContext } from "contexts/sleep"
 
@@ -18,7 +18,7 @@ export default function SleepOverview() {
       </div>
       <div className="feed">
         {sleeps?.length ? (
-          sleeps.map((sleep) => <SleepCard sleep={sleep} key={sleep.id} />)
+          sleeps.map((sleep) => <Link to={`/sleep/${sleep.id}`} key={sleep.id} ><SleepCard sleep={sleep}/></Link>)
         ) : (
           <div className="empty">
             <h2>Nothing here yet.</h2>

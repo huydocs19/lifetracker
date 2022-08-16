@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { Button, ExerciseCard } from "components"
 import { useExerciseContext } from "contexts/exercise"
 
@@ -18,7 +18,7 @@ export default function ExerciseOverview() {
       </div>
       <div className="feed">
         {exercises?.length ? (
-          exercises.map((exercise) => <ExerciseCard exercise={exercise} key={exercise.id} />)
+          exercises.map((exercise) => <Link to={`/exercise/${exercise.id}`} key={exercise.id} ><ExerciseCard exercise={exercise}/></Link>)
         ) : (
           <div className="empty">
             <h2>Nothing here yet.</h2>

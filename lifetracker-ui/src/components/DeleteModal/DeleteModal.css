@@ -1,0 +1,12 @@
+.delete-confirmation-question {
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 20px;
+    color: var(--font-dark);
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}

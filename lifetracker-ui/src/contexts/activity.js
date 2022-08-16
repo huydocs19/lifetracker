@@ -11,8 +11,7 @@ export const ActivityContextProvider = ({ children }) => {
   const { user } = useAuthContext()
   const { exercises, initialized: exerciseInitialized } = useExerciseContext()
   const { nutritions, initialized: nutritionInitialized } = useNutritionContext()
-  const { sleeps, initialized: sleepInitialized } = useSleepContext()
-  const [initialized, setInitialized] = useState(false)
+  const { sleeps, initialized: sleepInitialized } = useSleepContext()  
   const [activity, setActivity] = useState({
     averageExerciseIntensity: 0,
     averageDailyCalories: 0,
@@ -21,8 +20,7 @@ export const ActivityContextProvider = ({ children }) => {
     totalSleepHours: 0,
     totalExerciseMinutes: 0,
   })
-
-  const numTrackingItems = exercises.length + nutritions.length + sleeps.length
+  
   const allInitialized = [exerciseInitialized, nutritionInitialized, sleepInitialized].every((v) => Boolean(v))
 
   useEffect(() => {
@@ -42,17 +40,12 @@ export const ActivityContextProvider = ({ children }) => {
     }
 
     if (user?.username) {
-      if (allInitialized && !initialized) {
-        fetchUserActivity()
-        setInitialized(true)
-      } else if (allInitialized && numTrackingItems !== 0) {
-        // only fetch new data if any of the tracking categories have been updated
-        fetchUserActivity()
-        setInitialized(true)
-      }
+      if (allInitialized) {
+        fetchUserActivity()        
+      } 
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.username, numTrackingItems, allInitialized])
+  }, [user?.username, allInitialized, exercises, nutritions, sleeps])
 
   const activityValue = { activity, setActivity }
 

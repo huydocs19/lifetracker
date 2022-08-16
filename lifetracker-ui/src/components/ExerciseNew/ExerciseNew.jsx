@@ -1,8 +1,10 @@
+import {useNavigate} from "react-router-dom"
 import { Button, InputField } from "components"
 import { useExerciseNewForm } from "hooks/useExerciseNewForm"
 import "./ExerciseNew.css"
 
 export default function ExerciseNew() {
+  const navigate=useNavigate()
   const { form, errors, isLoading, handleOnSubmit, handleOnChange } = useExerciseNewForm()
 
   return (
@@ -54,16 +56,28 @@ export default function ExerciseNew() {
             max={10}
           />
         </div>
-
-        <Button
-          buttonType="primary"
-          color="gold"
-          isLoading={isLoading}
-          isDisabled={isLoading}
-          onClick={() => handleOnSubmit()}
-        >
-          Save
-        </Button>
+        <div className="buttons">
+          <Button
+            buttonType="primary"
+            color="gold"
+            isLoading={isLoading}
+            isDisabled={isLoading}
+            onClick={() => handleOnSubmit()} 
+            size = "small"         
+          >
+            Save
+          </Button>
+          <Button
+            buttonType="primary"
+            color="blue"
+            isLoading={isLoading}
+            isDisabled={isLoading}
+            onClick={() => navigate(`/exercise`)}
+            size = "small"         
+          >
+            Cancel
+          </Button>
+        </div>        
       </div>
     </div>
   )
