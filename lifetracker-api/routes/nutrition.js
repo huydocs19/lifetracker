@@ -24,7 +24,8 @@ router.get("/", security.requireAuthenticatedUser, async function (req, res, nex
   }
 })
 
-router.get("/:nutritionId", security.requireAuthenticatedUser, async function (req, res, next) {
+router.get("/:nutritionId", security.requireAuthenticatedUser, 
+permissions.authedUserIsNutritionOwner, async function (req, res, next) {
   try {
     const nutrition = await Nutrition.fetchNutritionById(req.params.nutritionId)
     return res.status(200).json({ nutrition })

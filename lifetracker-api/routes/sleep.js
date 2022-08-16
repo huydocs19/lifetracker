@@ -24,7 +24,8 @@ router.get("/", security.requireAuthenticatedUser, async function (req, res, nex
   }
 })
 
-router.get("/:sleepId", security.requireAuthenticatedUser, async function (req, res, next) {
+router.get("/:sleepId", security.requireAuthenticatedUser, 
+permissions.authedUserIsSleepOwner, async function (req, res, next) {
   try {
     const sleep = await Sleep.fetchSleepById(req.params.sleepId)
     return res.status(200).json({ sleep })
