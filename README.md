@@ -21,4 +21,4 @@ Everywhere around us is data waiting to be collected and utilized. In recent yea
 <img src="walkthrough1.gif" width=800><br>
 <img src="walkthrough2.gif" width=800><br>
 
-### Tech Stack Used: React, Node, Express, Postgres
+### Tech Stack Used: React, Node, Express, PostgreSQL
