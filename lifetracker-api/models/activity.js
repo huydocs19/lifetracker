@@ -38,7 +38,7 @@ class Activity {
             `
               SELECT AVG(DATE_PART('day', end_time::timestamp - start_time::timestamp) * 24 + 
               DATE_PART('hour', end_time::timestamp - start_time::timestamp)) AS "avgSleepHours"
-              FROM sleep
+              FROM sleeps
               WHERE user_id = (SELECT id FROM users WHERE username = $1);                 
             `,
             [
@@ -97,7 +97,7 @@ class Activity {
             `
                 SELECT SUM(DATE_PART('day', end_time::timestamp - start_time::timestamp) * 24 + 
                 DATE_PART('hour', end_time::timestamp - start_time::timestamp)) AS "totalSleepHours"
-                FROM sleep
+                FROM sleeps
                 WHERE user_id = (SELECT id FROM users WHERE username = $1);                 
             `,
             [

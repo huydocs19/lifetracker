@@ -19,6 +19,8 @@ const authedUserIsExerciseOwner = async (req, res, next) => {
       throw new ForbiddenError("User is not allowed to other users' exercises")
     }
 
+    res.locals.exercise = exercise
+
     return next()
   } catch (err) {
     return next(err)
@@ -33,6 +35,8 @@ const authedUserIsNutritionOwner = async (req, res, next) => {
     if (nutrition.username !== user.username) {
       throw new ForbiddenError("User is not allowed to other users' nutritions")
     }
+
+    res.locals.nutrition = nutrition
 
     return next()
   } catch (err) {
@@ -49,6 +53,8 @@ const authedUserIsSleepOwner = async (req, res, next) => {
     if (sleep.username !== user.username) {
       throw new ForbiddenError("User is not allowed to other users' sleep")
     }
+
+    res.locals.sleep= sleep
 
     return next()
   } catch (err) {

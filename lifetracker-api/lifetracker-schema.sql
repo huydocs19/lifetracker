@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS nutritions (
   created_at     TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS sleep (
+CREATE TABLE IF NOT EXISTS sleeps (
   id             SERIAL PRIMARY KEY,  
   start_time     TIMESTAMP NOT NULL,
   end_time       TIMESTAMP NOT NULL,  

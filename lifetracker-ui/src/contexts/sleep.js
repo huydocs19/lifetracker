@@ -12,7 +12,7 @@ export const SleepContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchUserSleep = async () => {
       const { data } = await apiClient.fetchUserSleep()
-      if (data?.sleep) setSleeps(data.sleep)
+      if (data?.sleeps) setSleeps(data.sleeps)
       setInitialized(true)
     }
 

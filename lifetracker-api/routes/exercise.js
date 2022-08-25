@@ -27,7 +27,7 @@ router.get("/", security.requireAuthenticatedUser, async function (req, res, nex
 router.get("/:exerciseId", security.requireAuthenticatedUser, 
 permissions.authedUserIsExerciseOwner, async function (req, res, next) {
   try {
-    const exercise = await Exercise.fetchExerciseById(req.params.exerciseId)    
+    const { exercise } = res.locals   
     return res.status(200).json({ exercise })
   } catch (err) {
     return next(err)

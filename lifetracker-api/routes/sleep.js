@@ -7,7 +7,7 @@ const router = express.Router()
 router.post("/", security.requireAuthenticatedUser, async function (req, res, next) {
   try {
     const user = res.locals.user
-    const sleep = await Sleep.createSleep({ newSleep: req.body.sleep, user })
+    const sleep = await Sleep.createSleep({ newSleep: req.body.sleep, user })    
     return res.status(201).json({ sleep  })
   } catch (err) {
     next(err)
@@ -17,8 +17,8 @@ router.post("/", security.requireAuthenticatedUser, async function (req, res, ne
 router.get("/", security.requireAuthenticatedUser, async function (req, res, next) {
   try {
     const user = res.locals.user
-    const sleep = await Sleep.listSleepFromUser(user)
-    return res.status(200).json({ sleep })
+    const sleeps = await Sleep.listSleepsFromUser(user)
+    return res.status(200).json({ sleeps })
   } catch (err) {
     return next(err)
   }

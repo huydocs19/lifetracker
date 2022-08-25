@@ -46,7 +46,7 @@ permissions.authedUserIsNutritionOwner, async function (req, res, next) {
 router.delete("/:nutritionId/delete", security.requireAuthenticatedUser, 
 permissions.authedUserIsNutritionOwner, async function (req, res, next) {
   try {
-    const nutrition = await Nutrition.deleteExercise(req.params.nutritionId)    
+    const nutrition = await Nutrition.deleteNutrition(req.params.nutritionId)    
     return res.status(200).json({ nutrition })
   } catch (err) {
     next(err)

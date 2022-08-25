@@ -17,8 +17,7 @@ export const useSleepEditForm = (sleepId) => {
   })  
   const [errors, setErrors] = useState({})  
 
-  useEffect(() => {    
-    console.log(sleep)
+  useEffect(() => {
     setForm({
         startTime: formatSleepTime(sleep.startTime) || "",
         endTime: formatSleepTime(sleep.endTime) || "", 
@@ -81,7 +80,7 @@ export const useSleepEditForm = (sleepId) => {
 const inputsAreValid = (startTime, endTime) => {
   // haven't entered everything in yet
   if (!startTime || !endTime) return true
-  console.log(startTime, endTime, moment(startTime).isSameOrAfter(endTime))
+  
   if (moment(startTime).isSameOrAfter(endTime)) return false
 
   return true

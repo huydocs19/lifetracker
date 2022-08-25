@@ -6,8 +6,7 @@ import "./SleepEdit.css"
 export default function SleepEdit() {
   const navigate = useNavigate()
   const {sleepId} = useParams()
-  const { form, errors, isLoading, handleOnSubmit, handleOnChange } = useSleepEditForm(sleepId)
-  console.log("form", form)
+  const { form, errors, isLoading, handleOnSubmit, handleOnChange } = useSleepEditForm(sleepId)  
   return (
     <div className="SleepEdit">
       <h2>Edit Sleep</h2>

@@ -16,6 +16,7 @@ class Exercise {
           VALUES ((SELECT id FROM users WHERE username = $1), $2, $3, $4, $5)
           RETURNING id,
                     user_id AS "userId",
+                    $1 AS username,
                     name,
                     duration,
                     intensity,
@@ -50,6 +51,7 @@ class Exercise {
       WHERE id = $5           
       RETURNING id,
                 user_id AS "userId",
+                (SELECT username FROM users WHERE id = user_id) AS username,
                 name,
                 duration,
                 intensity,
@@ -63,8 +65,12 @@ class Exercise {
         updatedExercise.category,
         exerciseId
       ]
-    )               
-    return results.rows[0]
+    )      
+    const exercise = results.rows[0]
+
+    if (exercise?.id) return exercise
+
+    throw new NotFoundError("No exercise found with that id.")  
   }
 
   static async deleteExercise(exerciseId) {
@@ -74,6 +80,7 @@ class Exercise {
       WHERE id = $1
       RETURNING id,
                 user_id AS "userId",
+                (SELECT username FROM users WHERE id = user_id) AS username,
                 name,
                 duration,
                 intensity,
@@ -84,7 +91,11 @@ class Exercise {
         exerciseId
       ]
     )               
-    return results.rows[0]
+    const exercise = results.rows[0]
+
+    if (exercise?.id) return exercise
+
+    throw new NotFoundError("No exercise found with that id.")
   }
 
   static async fetchExerciseById(exerciseId) {        
@@ -116,6 +127,7 @@ class Exercise {
       `
       SELECT id,
             user_id AS "userId",
+            $1 AS username,
             name,
             duration,
             intensity,

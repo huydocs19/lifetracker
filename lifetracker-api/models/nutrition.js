@@ -16,6 +16,7 @@ class Nutrition {
           VALUES ((SELECT id FROM users WHERE username = $1), $2, $3, $4, $5, $6)
           RETURNING id,
                     user_id AS "userId",
+                    $1 AS username,
                     name,
                     category, 
                     quantity, 
@@ -53,6 +54,7 @@ class Nutrition {
       WHERE id = $6          
       RETURNING id,
                 user_id AS "userId",
+                (SELECT username FROM users WHERE id = user_id) AS username,
                 name,
                 category, 
                 quantity, 
@@ -68,17 +70,21 @@ class Nutrition {
         updatedNutrition.imageUrl, 
         nutritionId
       ]
-    )               
-    return results.rows[0]
+    )          
+    const nutrition = results.rows[0]    
+    if (nutrition?.id) return nutrition
+
+    throw new NotFoundError("No nutrition found with that id.")
   }
 
-  static async deleteExercise(nutritionId) {
+  static async deleteNutrition(nutritionId) {
     const results = await db.query(
       `
       DELETE FROM nutritions
       WHERE id = $1
       RETURNING id,
                 user_id AS "userId",
+                (SELECT username FROM users WHERE id = user_id) AS username,
                 name,
                 category, 
                 quantity, 
@@ -90,7 +96,10 @@ class Nutrition {
         nutritionId
       ]
     )               
-    return results.rows[0]
+    const nutrition = results.rows[0]    
+    if (nutrition?.id) return nutrition
+
+    throw new NotFoundError("No nutrition found with that id.")
   }
 
   static async fetchNutritionById(nutritionId) {    
@@ -122,6 +131,7 @@ class Nutrition {
       `
       SELECT id,
             user_id AS "userId",
+            $1 as username,
             name,
             category, 
             quantity, 
